@@ -5,11 +5,11 @@ Metadata requests are throttled to two at a time to be nice to the Archive :)
 
 """
 
-import requests
 from gevent.pool import Pool
 from gevent import monkey
-
 monkey.patch_all()
+
+import requests
 
 IMAGE_QUERY_URL = "https://archive.org/advancedsearch.php"
 
@@ -53,11 +53,14 @@ def get_image_urls( id ):
 		List(str): List of URLS to the document's images
 	"""
 	urls = []
-	r = requests.get("https://archive.org/metadata/"+id)
-	metadata = r.json()
-	for f in metadata['files']:
-		if f['format'].lower() in ["jpeg","gif"]:
-			urls.append( make_download_url(id, metadata, f['name']) )
+	try:
+		r = requests.get("https://archive.org/metadata/"+id)
+		metadata = r.json()
+		for f in metadata['files']:
+			if f['format'].lower() in ["jpeg","gif"]:
+				urls.append( make_download_url(id, metadata, f['name']) )
+	except:
+		pass
 	return urls
 
 def test():
