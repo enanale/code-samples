@@ -1,7 +1,5 @@
 """
-
 Merge a collection sorted files into one combined sorted file.
-
 """
 
 from os import path
@@ -10,8 +8,9 @@ import heapq
 
 
 class FileDataIterator:
-	"""
-	Wrap a file into a iterator of over its integer data
+	"""Wrap a file into a iterator of over its integer data
+
+	File is closed automatically at EOF.
 	"""
 	def __init__(self, filename):
 		self.filename = filename
@@ -28,8 +27,9 @@ class FileDataIterator:
 		return int(line)
 
 def mergefiles( infiles, outfile ):
-	"""
-	Merges sorted data from many sorted files.  Data must be sorted within files.
+	"""Merges sorted data from many sorted files.
+
+	Data must be sorted within files.
 	Uses iterators and heapq.merge so that everything doesn't have to be loaded into memory
 	"""
 	sorted_it = heapq.merge(*[FileDataIterator(p) for p in infiles])

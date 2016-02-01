@@ -1,7 +1,5 @@
 """
-
 Generate some test files for mergefiles.py
-
 """
 
 import random
