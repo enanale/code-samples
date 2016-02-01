@@ -1,4 +1,5 @@
 Bucket of Code Samples
 ======================
 
-* mergefiles - merge data from seperate files into one file (Python)
+* mergefiles - Merge data from seperate files into one file (Python)
+* fetchurls - Query for a list of image URLs from archive.org
