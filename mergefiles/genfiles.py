@@ -5,7 +5,7 @@ Generate some test files for mergefiles.py
 import random
 from os import path
 
-NUM_FILES = 10
+NUM_FILES = 100
 NUM_ITEMS_PER_FILE = 100
 FILENAME_FORMAT = path.join("testfile","test_%03d")
 

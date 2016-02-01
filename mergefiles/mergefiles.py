@@ -32,14 +32,15 @@ def mergefiles( infiles, outfile ):
 	Data must be sorted within files.
 	Uses iterators and heapq.merge so that everything doesn't have to be loaded into memory
 	"""
-	sorted_it = heapq.merge(*[FileDataIterator(p) for p in infiles])
+	iters = [FileDataIterator(p) for p in infiles]
+	sorted_it = heapq.merge(*iters)
 	with open( outfile, "wt" ) as of:
 		for d in sorted_it:
 			of.write(str(d)+"\n")
 
 def test():
 	infiles = glob.glob(path.join("testfile","test_*"))
-	mergefiles( infiles, "sorted" )ß
+	mergefiles( infiles, "sorted" )
 	return
 
 if __name__ == "__main__":
